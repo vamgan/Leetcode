@@ -3,11 +3,10 @@ class Solution:
         stack = []
         bracketdict = {"(": ")", "[": "]",  "{": "}"}
         for i in s:
-            if i == "(" or i == "{" or i == "[":
+            if i in bracketdict:
                 stack.append(i)
             elif stack and i == bracketdict[stack[-1]]:
                 stack.pop()
             else:
                 return False
-        if stack == []:
-            return True
+        return stack == []
