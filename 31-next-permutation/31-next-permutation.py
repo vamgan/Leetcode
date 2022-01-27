@@ -7,10 +7,8 @@ class Solution:
         for i in range(len(nums) - 1,-1,-1):
             if nums[i] > nums[i - 1]:
                 change = i
-                print(i)
                 break
         if change == 0:
-            print(nums[::-1])
             return nums.reverse()
         ptr1 = change
         ptr2 = len(nums) - 1
@@ -24,7 +22,6 @@ class Solution:
                 nums[change-1], nums[j] = nums[j], nums[change-1]
                 break
             j -=1
-        print(nums)
         while ptr1 < ptr2:
             nums[ptr1], nums[ptr2] = nums[ptr2], nums[ptr1]
             ptr1 += 1
