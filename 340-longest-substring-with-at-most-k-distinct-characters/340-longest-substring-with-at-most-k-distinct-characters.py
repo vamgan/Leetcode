@@ -8,13 +8,11 @@ class Solution:
         max_length = 1
         mapper = OrderedDict()
         while right < len(s):
-            # if s[right] in mapper:
-            #     del mapper[s[right]]
             mapper[s[right]] = right
             if len(mapper) == k + 1:
-                best_key = min(mapper, key=mapper.get)
-                left = mapper[best_key] + 1
-                del mapper[best_key]
+                idx = min(mapper.values())
+                del mapper[s[idx]]
+                left = idx + 1
             right += 1
             max_length = max(max_length, right - left)
         return max_length
