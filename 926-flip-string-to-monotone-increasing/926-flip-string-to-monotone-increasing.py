@@ -1,8 +1,13 @@
 class Solution(object):
-    def minFlipsMonoIncr(self, S):
-        P = [0]
-        for x in S:
-            P.append(P[-1] + int(x))
-
-        return min(P[j] + len(S)-j-(P[-1]-P[j])
-                   for j in range(len(P)))
+    def minFlipsMonoIncr(self, s: str) -> int:
+            count1s, count0s, best = 0, 0, len(s)
+            for char in s:
+                if char == "1":
+                    count1s += 1
+            for char in reversed(s):
+                best = min(best, count1s+count0s) 
+                if char == "0":
+                    count0s += 1
+                else:
+                    count1s -= 1
+            return min(best, count1s+count0s) 
