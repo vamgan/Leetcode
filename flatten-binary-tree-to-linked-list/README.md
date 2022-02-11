@@ -1,3 +1,4 @@
+[Discussion Post (created on 11/1/2022 at 9:15)](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/discuss/1762058/Python-easy-Solution-using-List%3A-Time%3A-O(n)-Space%3A-O(n))  
 <h2>  Flatten Binary Tree to Linked List</h2><hr><div bis_skin_checked="1"><p>Given the <code>root</code> of a binary tree, flatten the tree into a "linked list":</p>
 
 <ul>
