@@ -10,10 +10,15 @@ class Solution:
         self.total_sum = prefix_sum
     def pickIndex(self) -> int:
         target = self.total_sum * random.random()
-        for i, prefix in enumerate(self.prefix_sum):
-            if target < prefix:
-                return i
-    
+        left = 0
+        right = len(self.prefix_sum)
+        while left <= right:
+            mid = (left + right) // 2
+            if target < self.prefix_sum[mid]:
+                right = mid - 1
+            else:
+                left = mid + 1
+        return left
 
 
 # Your Solution object will be instantiated and called as such:
