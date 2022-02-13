@@ -8,5 +8,5 @@ class Solution:
                 print(i)
                 res.append(i)
                 maxHeight = heights[i]
-        res.sort()
+        res.reverse()
         return res
