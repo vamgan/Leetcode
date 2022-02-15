@@ -1,32 +1,22 @@
-class Solution(object):
-    def isNumber(self, s):
-        dfa = [
-            {"digit": 1, "sign": 2, "dot": 3},
-            {"digit": 1, "dot": 4, "exponent": 5},
-            {"digit": 1, "dot": 3},
-            {"digit": 4},
-            {"digit": 4, "exponent": 5},
-            {"sign": 6, "digit": 7},
-            {"digit": 7},
-            {"digit": 7}
-        ]
-        
-        current_state = 0
-        for c in s:
+class Solution:
+    def isNumber(self, s: str) -> bool:
+        seen_digit = seen_exponent = seen_dot =  False
+        for i, c in enumerate(s):
             if c.isdigit():
-                group = "digit"
+                seen_digit = True
             elif c in ["+", "-"]:
-                group = "sign"
+                if i > 0 and s[i - 1] != "e" and s[i - 1] != "E":
+                    return False
             elif c in ["e", "E"]:
-                group = "exponent"
+                if seen_exponent or not seen_digit:
+                    return False
+                seen_exponent = True
+                seen_digit = False
             elif c == ".":
-                group = "dot"
+                if seen_dot or seen_exponent:
+                    return False
+                seen_dot = True
             else:
                 return False
-
-            if group not in dfa[current_state]:
-                return False
-            
-            current_state = dfa[current_state][group]
         
-        return current_state in [1, 4, 7]
+        return seen_digit
