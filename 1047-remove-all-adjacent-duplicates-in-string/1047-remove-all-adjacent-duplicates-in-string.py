@@ -3,13 +3,9 @@ class Solution:
         res = []
         i = 0
         while i < len(s):
-            if res:
-                if s[i] != res[-1]:
-                    res.append(s[i])
-                else:
+            if res and s[i] == res[-1]:
                     res.pop()
             else:
                 res.append(s[i])
             i += 1
-        print(res)
         return ''.join(res)
