@@ -7,20 +7,21 @@
 class Solution:
     def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
         def dfs(node,col, row):
-            nonlocal arr
+            nonlocal arr, maxcol, mincol
             if not node:
                 return
-            arr.append([node.val,col, row])
+            if col in arr:
+                arr[col].append((row, node.val))
+            else:
+                arr[col] = [(row, node.val)]
+            maxcol = max(maxcol, col)
+            mincol = min(mincol, col)
             dfs(node.left, col - 1,row + 1)
             dfs(node.right, col + 1, row + 1)
-        arr = []
+        arr = {}
         res = []
+        maxcol,mincol = 0, 0
         dfs(root, 0,0)
-        arr.sort(key = lambda x: (x[1],x[2], x[0]))
-        left_most = abs(arr[0][1])
-        for i in arr:
-            if i[1] + left_most < len(res):
-                res[i[1] + left_most].append(i[0])
-            else:
-                res.append([i[0]])
+        for i in range(mincol, maxcol+1):
+            res.append([val for key,val in sorted(arr[i])])
         return res
