@@ -1,33 +1,27 @@
 class Solution:
     def validWordAbbreviation(self, word: str, abbr: str) -> bool:
-        idx = 0
         wordIdx = 0
-        s = ''
+        
         num = ''
-        while idx < len(abbr):
-            if abbr[idx].isdigit():
-                num += abbr[idx]
-            else:
-                if num != '':
-                    if num[0] == '0' or wordIdx + int(num) > len(word):
-                        print('f')
-                        return False
-                    s += word[wordIdx: wordIdx + int(num)]
-                    wordIdx += int(num)
-                s += abbr[idx]
+        for idx,i in enumerate(abbr):
+            if i.isdigit():
+                if not num and i == '0':
+                    return False
+                num += i
+                continue
+            if num != '':
+                wordIdx += int(num)
                 num = ''
-                wordIdx += 1
-            idx += 1
-        print(s)
-        if num != '':
-                    if num[0] == '0' or wordIdx + int(num) > len(word):
-                        print('f')
-                        return False
-                    s += word[wordIdx: wordIdx + int(num)]
-        return s == word
+            if wordIdx >= len(word) or i != word[wordIdx]:
+                return False
+            wordIdx += 1
             
-            
-            
+        if num:
+            wordIdx += int(num)
+        if wordIdx != len(word):
+            return False
+        return True
+                    
                 
                 
                 
