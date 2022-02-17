@@ -16,7 +16,6 @@ class Solution:
         arr = []
         res = []
         dfs(root, 0,0)
-        print(arr)
         arr.sort(key = lambda x: (x[1],x[2], x[0]))
         left_most = abs(arr[0][1])
         for i in arr:
