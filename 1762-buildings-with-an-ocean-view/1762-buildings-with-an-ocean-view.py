@@ -1,10 +1,9 @@
 class Solution:
     def findBuildings(self, heights: List[int]) -> List[int]:
-        res = [len(heights) - 1]
-        maxHeight = heights[-1]
-        for i in reversed(range(len(heights) - 1)):
-            if heights[i] > heights[i+1] and heights[i] > maxHeight:
-                res.append(i)
-                maxHeight = heights[i]
-        res.reverse()
-        return res
+        currmax = 0
+        ans = []
+        for i in range(len(heights)-1,-1,-1):
+            if heights[i] > currmax:
+                ans.append(i)
+                currmax = heights[i]
+        return ans[::-1]
