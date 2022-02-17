@@ -1,12 +1,19 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        sub = ''
-        ans = 0
-        for char in s:
-            if char not in sub:
-                sub += char
-                ans = max(ans, len(sub))
+        mapper = {}
+        left = 0
+        right = 0
+        res = 0
+        for idx,val in enumerate(s):
+            if val in mapper:
+                if mapper[val] >= left:
+                    left = mapper[val] + 1
+                left
+                mapper[val] = idx
+                
             else:
-                cut = sub.index(char)
-                sub = sub[cut+1:] + char
-        return ans
+                mapper[val] = idx
+            right += 1
+            res = max(res,right - left)
+        return res
+        
