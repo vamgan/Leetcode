@@ -1,8 +1,9 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        bucket = [[] for _ in range(len(nums) + 1)]
         freq = collections.Counter(nums)
-        mapper = [[key,value] for key,value in freq.items()]
-        mapper.sort(key = lambda x:x[1], reverse = True)
-        return [mapper[i][0] for i in range(k)]
-        
+        for key,value in freq.items():
+            bucket[value].append(key)
+        result = [item for i in bucket for item in i]
+        return result[::-1][:k]
     
