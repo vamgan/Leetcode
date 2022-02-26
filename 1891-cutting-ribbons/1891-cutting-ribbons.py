@@ -4,7 +4,6 @@ class Solution:
             total = 0
             for i in ribbons:
                 total += i // rlen
-            print(total)
             return total < k
         low, high = 1, max(ribbons)
         if k > sum(ribbons):
@@ -12,7 +11,6 @@ class Solution:
 
         while low <= high:
             mid = (low + high) // 2
-            print(mid)
             if possible(mid):
                 high = mid - 1
             else:
