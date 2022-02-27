@@ -7,12 +7,11 @@ class Solution:
                 stack.append(i)
             elif c == ")":
                 if stack:
-                    stack.pop(-1)
+                    stack.pop()
                 else:
                     removeidx.add(i)
         if stack:
             removeidx.update(stack)
-        print(removeidx)
         answer = ""
         for i,c in enumerate(s):
             if i not in removeidx:
