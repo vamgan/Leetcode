@@ -12,8 +12,10 @@ class Solution:
             if abs(target - node.val) < self.minVal:
                 self.minVal = abs(target - node.val)
                 self.res = node.val
-            dfs(node.left)
-            dfs(node.right)
+            if target <= node.val:
+                dfs(node.left)
+            if target >= node.val:
+                dfs(node.right)
         self.minVal = math.inf
         self.res = 0
         dfs(root)
