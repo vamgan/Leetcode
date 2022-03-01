@@ -1,8 +1,16 @@
 class Solution:
     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
-        ptr_p, ptr_q = p, q
-        while ptr_p is not ptr_q:
-            ptr_p = ptr_p.parent if ptr_p.parent else q
-            ptr_q = ptr_q.parent if ptr_q.parent else p
+        a_node = p
+        b_node = q 
+        
+        while a_node != b_node:
+            if a_node.parent: 
+                a_node = a_node.parent
+            else:
+                a_node = q
             
-        return ptr_q
+            if b_node.parent:
+                b_node = b_node.parent
+            else:
+                b_node = p
+        return a_node
