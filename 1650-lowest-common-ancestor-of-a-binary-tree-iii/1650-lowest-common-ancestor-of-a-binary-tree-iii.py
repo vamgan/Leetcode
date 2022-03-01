@@ -10,19 +10,13 @@ class Node:
 
 class Solution:
     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
-        root = p
-        self.res = None
-        while root.parent:
-            root = root.parent
-        def helper(node):
-            if not node:
-                return False
-            left = helper(node.left)
-            right = helper(node.right)
-            
-            mid = node == p or node == q
-            if left + right + mid > 1:
-                self.res = node
-            return mid or left or right
-        helper(root)
-        return self.res
+        a_node = p
+        b_node = q
+        a_node_set = set()
+        while a_node:
+            a_node_set.add(a_node.val)
+            a_node = a_node.parent
+        while b_node:
+            if b_node.val in a_node_set:
+                return b_node
+            b_node = b_node.parent
