@@ -1,5 +1,6 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+        wordDict = set(wordDict)
         def helper(s, wordDict, sentence = "", answer = []):
             if s == "":
                 answer.append(sentence.strip())
