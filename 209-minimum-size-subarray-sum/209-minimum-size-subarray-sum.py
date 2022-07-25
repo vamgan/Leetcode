@@ -4,7 +4,7 @@ class Solution:
         left = 0
         right = 0
         running_sum = nums[left]
-        while left <= right and right <= len(nums) - 1:
+        while left <= right and right < len(nums):
             if running_sum < target:
                 right += 1
                 if right < len(nums):
