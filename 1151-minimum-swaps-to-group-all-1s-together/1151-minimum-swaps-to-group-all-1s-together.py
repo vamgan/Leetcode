@@ -1,9 +1,6 @@
 class Solution:
     def minSwaps(self, data: List[int]) -> int:
-        ones = 0
-        for i in data:
-            if i == 1:
-                ones += 1
+        ones = sum(data)
         left = 0
         right = 0
         countzeroes = 0
