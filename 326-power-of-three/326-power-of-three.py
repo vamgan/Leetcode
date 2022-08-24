@@ -1,6 +1,4 @@
 class Solution:
     def isPowerOfThree(self, n: int) -> bool:
-        if n <= 0:
-            return False
-        return n == 3 ** round(math.log(n, 3))
+        return n > 0 and n == 3 ** round(math.log(n, 3))
         
