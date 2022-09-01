@@ -14,6 +14,7 @@ class Solution:
             if node.val >= max_val:
                 nonlocal res
                 res += 1
+            
             max_val = max(max_val, node.val)
             
             dfs(node.left, max_val)
